@@ -4,7 +4,7 @@ A minimalistic tool for text replacement in HTML.
 ## Install
 
 ```sh
-    npm i hexty -D
+npm i hexty -D
 ```
 
 ## Example
@@ -75,5 +75,5 @@ At last, let's create the `index.js` file that glues everything together
 `index.js`
 ```js
 const config = require('./textly.config');
-const textly = require('../index.js')(config);
+const textly = require('hexty')(config);
 ```
