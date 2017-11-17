@@ -1,0 +1,14 @@
+{
+  "name": "hexty",
+  "version": "1.0.0",
+  "description": "A minimalistic tool for text replacement in HTML",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Pachito Marco Calabrese",
+  "license": "ISC",
+  "devDependencies": {
+    "cheerio": "^1.0.0-rc.2"
+  }
+}
