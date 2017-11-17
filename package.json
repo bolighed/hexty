@@ -8,7 +8,7 @@
   },
   "author": "Pachito Marco Calabrese",
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
     "cheerio": "^1.0.0-rc.2"
   }
 }
