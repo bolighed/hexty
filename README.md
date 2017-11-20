@@ -4,7 +4,7 @@ A minimalistic tool for text replacement in HTML.
 ## Install
 
 ```sh
-    npm i hexty -D
+npm i hexty -D
 ```
 
 ## Example
