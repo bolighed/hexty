@@ -7,11 +7,4 @@ const files = [
     }
 ];
 
-const config = {
-    attr_start: "data-texty"
-}
-
-module.exports = {
-    files: files,
-    config: config
-};
+module.exports = files;

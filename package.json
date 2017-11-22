@@ -1,6 +1,6 @@
 {
-  "name": "hexty",
-  "version": "1.0.2",
+  "name": "bolighed-hexty",
+  "version": "1.0.0",
   "description": "A minimalistic tool for text replacement in HTML",
   "main": "index.js",
   "scripts": {
@@ -9,6 +9,7 @@
   "author": "Pachito Marco Calabrese",
   "license": "ISC",
   "dependencies": {
-    "cheerio": "^1.0.0-rc.2"
+    "cheerio": "^1.0.0-rc.2",
+    "marked": "^0.3.6"
   }
 }

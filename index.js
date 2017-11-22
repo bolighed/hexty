@@ -1,35 +1,45 @@
 const fs = require('fs');
 const path = require('path');
-const cheerio = require('cheerio')
+const cheerio = require('cheerio');
+const marked = require('marked');
+const { replaceAll, attr_config } = require('./libs/utils');
 
-module.exports = (CONFIG) => {
+const renderer = new marked.Renderer();
+renderer.heading = function(text, level) {
+    return `<h${level} >${text}</h${level}>`;
+};
 
-    const replaceAll = function (target, search, replacement) {
-        return target.replace(new RegExp(search, 'g'), replacement);
-    };
+module.exports = (files) => {
 
-    const injectText = function (html, attr_key, value) {
+    const inject = function (type, html, attr_key, value) {
         const $ = cheerio.load(html)
-        const original_text_element = $(`[${CONFIG.config.attr_start}="${attr_key}"]`).first().toString();
-        const new_text_element = $(`[${CONFIG.config.attr_start}="${attr_key}"]`).first().text(value).toString();
+        if (type === 'md') {
+            value = marked(value, { renderer: renderer })
+        }
         return {
-            original_text_element: original_text_element,
-            new_text_element: new_text_element
+            original_text_element: $(`[${attr_config.attr_start_text}="${attr_key}"]`).first().toString(),
+            new_text_element: $(`[${attr_config.attr_start_text}="${attr_key}"]`).first().html(value).toString()
         }
     }
 
-    const textly = function (files) {
+    const hexty = function (files) {
         files.forEach((file) => {
             fs.readFile(file.path, 'utf8', (err, html) => {
                 let placeholders = [];
-                const $ = cheerio.load(html)
                 text = require(file.text_path)
-                for (var placeholder in text) {
-                    placeholders.push(placeholder);
+                for (const placeholder in text) {
                     if (text.hasOwnProperty(placeholder)) {
-                        const t = injectText(html, placeholder, text[placeholder]);
+                        let t;
+                        if (placeholder.endsWith('-html')) {
+                            t = inject("html", html, placeholder, text[placeholder]);
+                        } else if (placeholder.endsWith('-md')) {
+                            t = inject("md", html, placeholder, text[placeholder]);
+                        } else {
+                            t = inject("", html, placeholder, text[placeholder]);
+                        }
                         html = replaceAll(html, t.original_text_element, t.new_text_element);
                     }
+                    placeholders.push(placeholder);
                 }
                 fs.writeFile(file.path, html, 'utf8', (err) => {
                     if (err) throw err;
@@ -39,6 +49,6 @@ module.exports = (CONFIG) => {
         });
     }
 
-    textly(CONFIG.files);
+    hexty(files);
     
 };
