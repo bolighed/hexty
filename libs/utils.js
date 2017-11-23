@@ -9,7 +9,8 @@ const replaceAll = function (target, search, replacement) {
 const attr_config = {
     attr_start_text: "data-texty",
     attr_start_html: "data-texty-html",
-    attr_start_md: "data-texty-md"
+    attr_start_md: "data-texty-md",
+    skip_suffix: "-x"
 }
 
 module.exports = {

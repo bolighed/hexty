@@ -46,6 +46,7 @@ module.exports = texts;
 ```
 
 The html tags with attribute `data-textly` having values matching the keys in `index.texts.js`. It is important if your text contains HTML your key must finish with `-html` and if contains Markdown it must finish `-md`.
+Placeholder ending with `-x` will not be checked.
 
 ```html
 <!DOCTYPE html>
@@ -78,3 +79,11 @@ At last, let's create the `index.js` file that glues everything together.
 const config = require('./textly.config');
 const textly = require('bolighed-hexty')(config);
 ```
+
+If there are some errors they will be displayed like so
+
+![Hexty error](./errors.png)
+
+otherwise
+
+![Hexty success](./success.png)
