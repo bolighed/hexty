@@ -1,6 +1,6 @@
 {
   "name": "bolighed-hexty",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A minimalistic tool for text replacement in HTML",
   "main": "index.js",
   "scripts": {
