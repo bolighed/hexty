@@ -1,2 +1,2 @@
-const config = require('./textly.config');
+const config = require('./hexty.config');
 const hexty = require('../lib/index')(config);
