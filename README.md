@@ -109,5 +109,5 @@ otherwise
 You can use the tool from the command line like so:
 
 ```sh
-hexty --config hextly.config.js
+hexty --config hexty.config.js
 ```
