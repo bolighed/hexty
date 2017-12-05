@@ -31,6 +31,22 @@ const files = [
 module.exports = files;
 ```
 
+or `text_path` could be also an object
+
+```js
+const path = require('path');
+const { texts, texts2 } = require("./index.texts.js");
+
+const files = [
+    {
+        path: path.resolve(__dirname, "./index.html"),
+        text_path: texts
+    }
+];
+
+module.exports = files;
+```
+
 Let's create the `index.texts.js` file, which is a map of placeholder and text files
 
 `index.texts.js`
@@ -61,12 +77,12 @@ Placeholder ending with `-x` will not be checked.
 
 <body>
     <h1>Texty example</h1>
-    <p data-texty="message-text">Hello World in a text</p>
-    <p data-texty="message-text">Hello World in a text</p>
-    <li data-texty="message-html" class="plum"><h2>Something else in good old html</h2></li>
-    <li data-texty="message-html" class="plum"><h2>Something else in good old html</h2></li>
-    <li data-texty="message-md" class="plum"><h3>hello this is markdown ++</h3></li>
-    <li data-texty="message-md" class="plum"><h3>hello this is markdown ++</h3></li>
+    <p data-hexty="message-text">Hello World in a text</p>
+    <p data-hexty="message-text">Hello World in a text</p>
+    <li data-hexty="message-html" class="plum"><h2>Something else in good old html</h2></li>
+    <li data-hexty="message-html" class="plum"><h2>Something else in good old html</h2></li>
+    <li data-hexty="message-md" class="plum"><h3>hello this is markdown ++</h3></li>
+    <li data-hexty="message-md" class="plum"><h3>hello this is markdown ++</h3></li>
 </body>
 
 </html>
@@ -76,8 +92,8 @@ At last, let's create the `index.js` file that glues everything together.
 
 `index.js`
 ```js
-const config = require('./textly.config');
-const textly = require('bolighed-hexty')(config);
+const config = require('./hexty.config');
+require('bolighed-hexty')(config);
 ```
 
 If there are some errors they will be displayed like so
@@ -87,3 +103,11 @@ If there are some errors they will be displayed like so
 otherwise
 
 ![Hexty success](./success.png)
+
+## CLI usage
+
+You can use the tool from the command line like so:
+
+```sh
+hexty --config hextly.config.js
+```
